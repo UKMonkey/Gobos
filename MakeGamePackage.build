@@ -64,7 +64,7 @@
 
     <Target Name="CopyModAssets">
         <ItemGroup>
-            <Assets Include="OutbreakData\**\*" />
+            <Assets Include="GobosData\**\*" />
         </ItemGroup>
 
         <MakeDir Directories="$(OutputPath)\Mods\outbreak\Data" />

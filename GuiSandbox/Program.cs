@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Psy.Core;
 using Psy.Core.Configuration;
 using Psy.Core.Console;
@@ -25,7 +25,7 @@ namespace GuiSandbox
 
             Lookup.AddPath(".");
             Lookup.AddPath(@"Layouts");
-            Lookup.AddPath(@"..\..\OutbreakData", true);
+            Lookup.AddPath(@"..\..\GobosData", true);
 
             var windowAttributes = new WindowAttributes
                                    {

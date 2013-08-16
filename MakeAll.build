@@ -58,12 +58,12 @@
 
   <Target Name="CopyAssets">
     <ItemGroup>
-      <GameModels Include="OutbreakData\**\*.obj;OutbreakData\**\*.mtl" />
-      <GameImages Include="OutbreakData\**\*.png" />
-      <GameSounds Include="OutbreakData\**\*.ogg" />
-      <GameAtlasDefs Include="OutbreakData\**\*.adf;OutbreakData\**\*.adfm" />
-      <GameXml Include="OutbreakData\**\*.xml" />
-      <GameShaders Include="OutbreakData\**\*.fx" />
+      <GameModels Include="GobosData\**\*.obj;OutbreakData\**\*.mtl" />
+      <GameImages Include="GobosData\**\*.png" />
+      <GameSounds Include="GobosData\**\*.ogg" />
+      <GameAtlasDefs Include="GobosData\**\*.adf;OutbreakData\**\*.adfm" />
+      <GameXml Include="GobosData\**\*.xml" />
+      <GameShaders Include="GobosData\**\*.fx" />
 
     </ItemGroup>
     <Copy SourceFiles="@(GameModels)" DestinationFolder="$(GameOutDir)\Data" />
