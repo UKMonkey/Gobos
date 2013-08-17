@@ -127,11 +127,16 @@ namespace Outbreak.Server.Persistance.File.Chunks
 
         private void ChunkMeshUpdated(Chunk item)
         {
-            SaveChunks(new List<Chunk>{item});
+            if (!item.BlockBased)
+            {
+                SaveChunks(new List<Chunk> {item});
+            }
         }
 
-        private void ChunkBlockUpdated(Chunk item, int x, int y)
+        private void ChunkBlockUpdated(Chunk item, short x, short y, short z)
         {
+            // TODO - find a better way to update this specific 16 bit number other than
+            // blurting the entire chunk out to disk
             SaveChunks(new List<Chunk>{item});
         }
     }
