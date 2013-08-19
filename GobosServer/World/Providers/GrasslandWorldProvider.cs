@@ -48,7 +48,7 @@ namespace Outbreak.Server.World.Providers
 
         public void LoadChunks(List<ChunkKey> keys)
         {
-            var generated = new List<Chunk>();
+            var generated = new List<IChunk>();
 
             foreach (var key in keys)
             {

@@ -105,7 +105,7 @@ namespace Outbreak.Server.World.Providers.Biome
          * Note that the provider should either create a new random generator for each chunk or avoid doing any
          * randomness, as the keys passed in may be in any order for any biome
          */
-        protected IEnumerable<Chunk> GetChunks(BiomeKey biomeKey, IEnumerable<ChunkKey> keys, IEnumerable<BuildingData> buildings, IChunkMeshProvider chunkMeshProvider)
+        protected IEnumerable<IChunk> GetChunks(BiomeKey biomeKey, IEnumerable<ChunkKey> keys, IEnumerable<BuildingData> buildings, IChunkMeshProvider chunkMeshProvider)
         {
             var ret = new List<Chunk>();
             var buildingList = buildings.ToList();

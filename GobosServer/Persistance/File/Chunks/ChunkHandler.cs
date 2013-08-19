@@ -72,13 +72,13 @@ namespace Outbreak.Server.Persistance.File.Chunks
             Loader.OnChunksUnavailable += ChunksUnavailable;
         }
 
-        private void ChunkLoaded(List<Chunk> chunks)
+        private void ChunkLoaded(List<IChunk> chunks)
         {
             if (OnChunkLoad != null)
                 OnChunkLoad(chunks);
         }
 
-        private void ChunkGenerated(List<Chunk> chunks)
+        private void ChunkGenerated(List<IChunk> chunks)
         {
             if (OnChunksGenerated != null)
                 OnChunksGenerated(chunks);
@@ -99,7 +99,7 @@ namespace Outbreak.Server.Persistance.File.Chunks
             }
         }
 
-        public void SaveChunks(List<Chunk> chunksToSave)
+        public void SaveChunks(List<IChunk> chunksToSave)
         {
             var dataToSave = new Dictionary<ChunkKey, byte[]>();
             foreach (var chunk in chunksToSave)
@@ -109,11 +109,8 @@ namespace Outbreak.Server.Persistance.File.Chunks
                 var data = stream.ToArray();
                 dataToSave[chunk.Key] = data;
 
-                chunk.ChunkMeshUpdated -= ChunkMeshUpdated;
-                chunk.ChunkMeshUpdated += ChunkMeshUpdated;
-
-                chunk.ChunkBlockUpdated -= ChunkBlockUpdated;
-                chunk.ChunkBlockUpdated += ChunkBlockUpdated;
+                chunk.ChunkChanged -= ChunkMeshUpdated;
+                chunk.ChunkChanged += ChunkMeshUpdated;
             }
 
             lock (this)
@@ -125,19 +122,9 @@ namespace Outbreak.Server.Persistance.File.Chunks
             }
         }
 
-        private void ChunkMeshUpdated(Chunk item)
+        private void ChunkMeshUpdated(IChunk item)
         {
-            if (!item.BlockBased)
-            {
-                SaveChunks(new List<Chunk> {item});
-            }
-        }
-
-        private void ChunkBlockUpdated(Chunk item, short x, short y, short z)
-        {
-            // TODO - find a better way to update this specific 16 bit number other than
-            // blurting the entire chunk out to disk
-            SaveChunks(new List<Chunk>{item});
+            SaveChunks(new List<IChunk> {item});
         }
     }
 }
