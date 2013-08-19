@@ -478,5 +478,10 @@ namespace Outbreak.Server
         {
             yield break;
         }
+
+        public short GetChunkWorldSize()
+        {
+            return 16;
+        }
     }
 }

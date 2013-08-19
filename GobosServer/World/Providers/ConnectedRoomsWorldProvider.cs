@@ -60,7 +60,7 @@ namespace Outbreak.Server.World.Providers
                                                Colours.RandomSolid() * 3)
                                  };
                 var chunkMesh = new ChunkMesh();
-                chunkMesh.AddRectangle((int)MaterialType.Grassland, new Vector3(0, 0, 0), new Vector3(Chunk.ChunkWorldSize, Chunk.ChunkWorldSize, 0));
+                chunkMesh.AddRectangle((int)MaterialType.Grassland, new Vector3(0, 0, 0), new Vector3(_engine.ChunkWorldSize, _engine.ChunkWorldSize, 0));
 
                 var toAdd = new Chunk(key, chunkMesh, lights);
 

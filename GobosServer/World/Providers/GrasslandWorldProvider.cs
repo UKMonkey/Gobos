@@ -62,7 +62,9 @@ namespace Outbreak.Server.World.Providers
                 }
                 var chunkMesh = new ChunkMesh();
 
-                chunkMesh.AddRectangle(key.X % 2 == 0 ? (int)MaterialType.Grassland : (int)MaterialType.Wall1, new Vector3(0, 0, 0), new Vector3(Chunk.ChunkWorldSize, Chunk.ChunkWorldSize, 0));
+                chunkMesh.AddRectangle(key.X % 2 == 0 ?
+                    (int)MaterialType.Grassland :
+                    (int)MaterialType.Wall1, new Vector3(0, 0, 0), new Vector3(_engine.ChunkWorldSize, _engine.ChunkWorldSize, 0));
 
                 var toAdd = new Chunk(key, chunkMesh, lights);
 
