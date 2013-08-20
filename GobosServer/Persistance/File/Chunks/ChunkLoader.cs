@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Psy.Core.Logging;
+using Vortex.Interface;
 using Vortex.Interface.Serialisation;
 using Vortex.Interface.World.Chunks;
 using System.IO;
@@ -33,7 +34,7 @@ namespace Outbreak.Server.Persistance.File.Chunks
             try
             {
                 var file = new FileStream(fullFilePath, FileMode.Open);
-                var chunk = file.ReadChunk();
+                var chunk = file.ReadChunk(Game.Engine);
                 file.Close();
                 file.Dispose();
                 return chunk;

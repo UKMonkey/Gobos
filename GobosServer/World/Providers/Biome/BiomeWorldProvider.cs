@@ -107,13 +107,13 @@ namespace Outbreak.Server.World.Providers.Biome
          */
         protected IEnumerable<IChunk> GetChunks(BiomeKey biomeKey, IEnumerable<ChunkKey> keys, IEnumerable<BuildingData> buildings, IChunkMeshProvider chunkMeshProvider)
         {
-            var ret = new List<Chunk>();
+            var ret = new List<MeshOnlyChunk>();
             var buildingList = buildings.ToList();
             foreach (var chunkKey in keys)
             {
                 var mesh = GenerateChunkMesh(biomeKey, chunkKey, buildingList, chunkMeshProvider);
                 var lights = buildingList.SelectMany(item => item.GetLightsForChunk(chunkKey)).ToList();
-                var chunk = new Chunk(chunkKey, mesh, lights);
+                var chunk = new MeshOnlyChunk(chunkKey, mesh, lights);
 
                 ret.Add(chunk);
             }

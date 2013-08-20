@@ -66,7 +66,7 @@ namespace Outbreak.Server.World.Providers
                     (int)MaterialType.Grassland :
                     (int)MaterialType.Wall1, new Vector3(0, 0, 0), new Vector3(_engine.ChunkWorldSize, _engine.ChunkWorldSize, 0));
 
-                var toAdd = new Chunk(key, chunkMesh, lights);
+                var toAdd = new MeshOnlyChunk(key, chunkMesh, lights);
 
                 generated.Add(toAdd);
             }
