@@ -104,8 +104,9 @@ namespace Outbreak.Server.Persistance.File.Chunks
             var dataToSave = new Dictionary<ChunkKey, byte[]>();
             foreach (var chunk in chunksToSave)
             {
+                var chunkType = Game.Engine.ChunkFactory.GetChunkType(chunk);
                 var stream = new MemoryStream();
-                stream.Write(chunk);
+                stream.Write(chunk, chunkType);
                 var data = stream.ToArray();
                 dataToSave[chunk.Key] = data;
 
