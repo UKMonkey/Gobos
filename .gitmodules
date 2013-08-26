@@ -1,9 +1,12 @@
 [submodule "Psy"]
 	path = Psy
 	url = ../Psy.git
+	branch = master
 [submodule "Externals"]
 	path = Externals
 	url = ../Externals.git
+	branch = master
 [submodule "Vortex"]
 	path = Vortex
 	url = ../Vortex.git
+	branch = master
