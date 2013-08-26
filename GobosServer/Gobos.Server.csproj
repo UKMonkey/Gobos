@@ -63,7 +63,6 @@
     <Compile Include="Entities\Behaviours\OnKilled\GiveExperience.cs" />
     <Compile Include="Entities\Behaviours\OnKilled\SpawnItems.cs" />
     <Compile Include="Entities\Behaviours\OnKilled\SpawnLootableCorpse.cs" />
-    <Compile Include="Entities\Behaviours\OnPlayerChange\UpdateNameplate.cs" />
     <Compile Include="Entities\Behaviours\OnSpawn\AddItemsToInventory.cs" />
     <Compile Include="Entities\Behaviours\OnSpawn\CreateInventory.cs" />
     <Compile Include="Entities\Behaviours\OnSpawn\PopulateShelf.cs" />

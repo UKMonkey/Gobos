@@ -1,0 +1,10 @@
+diff a/Gobos/Game.cs b/Gobos/Game.cs	(rejected hunks)
+@@ -105,8 +105,6 @@
+                     RegisterDefaultProperty(GameEntityPropertyEnum.WalkSpeed, 0.05f).
+                     RegisterDefaultProperty(GameEntityPropertyEnum.RunSpeed, 0.1f).
+                     RegisterDefaultProperty(GameEntityPropertyEnum.KeyboardMovementDir, (byte)Direction.None).
+-                    RegisterDefaultProperty(GameEntityPropertyEnum.IsRunning, true).
+-
+ 
+                 Add(EntityTypeEnum.InventoryItem, "InventoryItem").
+                     RegisterDefaultProperty(EntityPropertyEnum.Static, true).

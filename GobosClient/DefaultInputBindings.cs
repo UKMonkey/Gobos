@@ -11,7 +11,6 @@ namespace Outbreak.Client
             inputBinder.Bind(InputActions.MoveDown.ToString(), Key.Down, Key.S);
             inputBinder.Bind(InputActions.MoveLeft.ToString(), Key.Left, Key.A);
             inputBinder.Bind(InputActions.MoveRight.ToString(), Key.Right, Key.D);
-            inputBinder.Bind(InputActions.Walk.ToString(), Key.LeftCtrl);
 
             inputBinder.BindDown(InputActions.Reload.ToString(), Key.R, Key.Insert);
             inputBinder.Bind(InputActions.Fire.ToString(), Key.MouseLeft);

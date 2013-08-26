@@ -52,8 +52,11 @@ namespace Outbreak
         {
             foreach (var entity in updated)
             {
-                _modelEquipper.Equip(entity);
                 entity.OnPropertyChanged += EntityPropertyChanged;
+                if (!entity.GetSolid())
+                    continue;
+                
+                _modelEquipper.Equip(entity);
             }
         }
 
@@ -105,6 +108,7 @@ namespace Outbreak
                     RegisterDefaultProperty(GameEntityPropertyEnum.WalkSpeed, 0.05f).
                     RegisterDefaultProperty(GameEntityPropertyEnum.RunSpeed, 0.1f).
                     RegisterDefaultProperty(GameEntityPropertyEnum.KeyboardMovementDir, (byte)Direction.None).
+                    RegisterDefaultProperty(GameEntityPropertyEnum.IsRunning, true).
 
                 Add(EntityTypeEnum.InventoryItem, "InventoryItem").
                     RegisterDefaultProperty(EntityPropertyEnum.Static, true).

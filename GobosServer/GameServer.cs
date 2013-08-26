@@ -10,7 +10,6 @@ using Outbreak.Server.Entities.Behaviours.OnHearWeapon;
 using Outbreak.Server.Entities.Behaviours.OnInteract;
 using Outbreak.Server.Entities.Behaviours.OnInventoryChange;
 using Outbreak.Server.Entities.Behaviours.OnKilled;
-using Outbreak.Server.Entities.Behaviours.OnPlayerChange;
 using Outbreak.Server.Entities.Behaviours.OnSpawn;
 using Outbreak.Server.Entities.Behaviours.OnTakeDamage;
 using Outbreak.Server.Entities.Behaviours.OnThinking;
@@ -195,20 +194,6 @@ namespace Outbreak.Server
                 RegisterBehaviour(EntityTypeEnum.SmallStash, EntityBehaviourEnum.OnInteract, new OpenInventory(this)).
                 RegisterBehaviour(EntityTypeEnum.SmallStash, EntityBehaviourEnum.OnSpawn, new FillStash(this, StashSize.Small)).
 
-                RegisterBehaviour(EntityTypeEnum.Player, EntityBehaviourEnum.PlayerChanged, new UpdateNameplate(Engine)).
-                RegisterBehaviour(EntityTypeEnum.Player, EntityBehaviourEnum.OnSpawn, new CreateInventory(Consts.PlayerBackpackSize, true)).
-                RegisterBehaviour(EntityTypeEnum.Player, EntityBehaviourEnum.OnSpawn, new AddItemsToInventory(this, new[] { ItemTypeEnum.CricketBat })).
-                RegisterBehaviour(EntityTypeEnum.Player, EntityBehaviourEnum.OnSpawn, new AddItemsToInventory(this, new[] { ItemTypeEnum.Food })).
-                RegisterBehaviour(EntityTypeEnum.Player, EntityBehaviourEnum.OnSpawn, new AddItemsToInventory(this, new[] { ItemTypeEnum.FirstAidPack })).
-                RegisterBehaviour(EntityTypeEnum.Player, EntityBehaviourEnum.OnSpawn, new AddItemsToInventory(this, new[] { ItemTypeEnum.HeadItem })).
-                RegisterBehaviour(EntityTypeEnum.Player, EntityBehaviourEnum.Think, new PerformReload()).
-                RegisterBehaviour(EntityTypeEnum.Player, EntityBehaviourEnum.Think, new GetHungry()).
-                RegisterBehaviour(EntityTypeEnum.Player, EntityBehaviourEnum.OnKilled, new DropInventory(Engine)).
-                RegisterBehaviour(EntityTypeEnum.Player, GameEntityBehaviourEnum.OnPrimaryWeaponChange, new UpdateVisibleItems(InventorySpecialSlotEnum.PrimaryWeapon, GameEntityPropertyEnum.PrimaryWeaponItem)).
-                RegisterBehaviour(EntityTypeEnum.Player, GameEntityBehaviourEnum.OnSecondaryWeaponChange, new UpdateVisibleItems(InventorySpecialSlotEnum.SecondaryWeapon, GameEntityPropertyEnum.SecondaryWeaponItem)).
-                RegisterBehaviour(EntityTypeEnum.Player, GameEntityBehaviourEnum.OnHeadSlotChange, new UpdateVisibleItems(InventorySpecialSlotEnum.HeadArmour, GameEntityPropertyEnum.HeadSlotItem)).
-                RegisterDefaultDamageHandler(EntityTypeEnum.Player, new BasicDamageHandler()).
-
                 RegisterBehaviour(EntityTypeEnum.ShopShelf, EntityBehaviourEnum.OnSpawn, new PopulateShelf(this)).
                 RegisterBehaviour(EntityTypeEnum.ShopShelf, EntityBehaviourEnum.OnInteract, new OpenInventory(this)).
                 RegisterBehaviour(EntityTypeEnum.ShopShelf, GameEntityBehaviourEnum.OnInventoryChange, new DeleteInventoryIfEmpty()).
@@ -384,27 +369,14 @@ namespace Outbreak.Server
                 entity = Engine.EntityFactory.Get(EntityTypeEnum.Player);
 
                 entity.SetPosition(spawnPosition.AsVector3());
-                entity.SetMaxHealth(Consts.PlayerStartHealth);
-                entity.SetHealth(Consts.PlayerStartHealth);
-                entity.SetProperty(
-                    new EntityProperty(
-                        (int)GameEntityPropertyEnum.LevelExperience,
-                        LevelExperienceCalculator.GetLevelExperienceRequirement(1)));
-
                 Engine.SpawnEntity(entity);
             }
 
             entity.SetPlayer(player);
-            entity.OnDeath += RemoveEntityIdFromPlayer;
-            entity.OnDeath += OnPlayerDead;
-            entity.OnPropertyChanged += _playerLevelNameplateUpdater.UpdateNameplate;
-
             player.EntityId = entity.EntityId;
 
             entity.PlayerChanged();
             Engine.TrackEntity(entity);
-            
-            _playerLevelNameplateUpdater.UpdateNameplate(entity);
 
             Engine.SetClientFocus(player, entity);
             AnnounceClientEntityControlSituationToClients(player, entity);

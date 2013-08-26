@@ -70,6 +70,10 @@
     <Compile Include="Items\Modifications\FloatModification.cs" />
     <Compile Include="Items\Modifications\MaterialModification.cs" />
     <Compile Include="Items\Modifications\ShortModification.cs" />
+    <Compile Include="Jobs\IJobQueue.cs" />
+    <Compile Include="Jobs\Job.cs" />
+    <Compile Include="Jobs\JobPriority.cs" />
+    <Compile Include="Jobs\JobType.cs" />
     <Compile Include="ModelEquipper.cs" />
     <Compile Include="Net\Messages\ClientCancelUseItemMessage.cs" />
     <Compile Include="Net\Messages\ClientInventoryDropToFloor.cs" />
