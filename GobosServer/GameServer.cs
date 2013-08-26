@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using Outbreak.Entities.Properties;
+using Outbreak.Enums;
 using Outbreak.Items;
 using Outbreak.Items.ItemGenerators;
 using Outbreak.Resources;
@@ -44,7 +45,6 @@ using Outbreak.Net.Messages;
 using Outbreak.Server.Items.Containers;
 using Outbreak.Server.WeaponHandler;
 using Outbreak.Server.World.Providers;
-using Outbreak.Server.World.Providers.Biome;
 using Psy.Core;
 using Psy.Core.Configuration;
 using Psy.Core.Tasks;
@@ -260,8 +260,9 @@ namespace Outbreak.Server
 
             ItemGeneratorDictionary = new ItemGeneratorDictionary();
             RegisterItemGenerators(ItemGeneratorDictionary);
+            
 
-            var generator = new TranslatorBiomeWorldProvider(1337, this, ItemGeneratorDictionary);
+            var generator = new WorldGenerator(1337, 2, Engine);
             var provider = new SerialWorldProvider();
 
             if (UseFileDataStore)
@@ -476,7 +477,23 @@ namespace Outbreak.Server
 
         public IEnumerable<BlockProperties> GetBlockTypes()
         {
-            yield break;
+            var materialType = new Dictionary<ushort, MaterialType>
+                                   {
+                                       {0, MaterialType.Grassland},
+                                       {1, MaterialType.MarbleFloor}
+                                   };
+
+            var properties = new BlockProperties();
+            properties.SetBlockId(1);
+            properties.SetMaterial((short)MaterialType.Grassland);
+
+            yield return properties;
+
+            properties = new BlockProperties();
+            properties.SetBlockId(2);
+            properties.SetMaterial((short)MaterialType.MarbleFloor);
+
+            yield return properties;
         }
 
         public short GetChunkWorldSize()
