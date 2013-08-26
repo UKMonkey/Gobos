@@ -16,6 +16,9 @@
         ZoomIn,
         Zoomout,
 
+        LevelDown,
+        LevelUp,
+
         Inventory,
 
         DebugView,

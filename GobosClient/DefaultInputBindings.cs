@@ -17,8 +17,12 @@ namespace Outbreak.Client
             inputBinder.Bind(InputActions.Fire.ToString(), Key.MouseLeft);
             inputBinder.Bind(InputActions.Interact.ToString(), Key.Space);
 
-            inputBinder.BindDown(InputActions.ZoomIn.ToString(), Key.MouseWheelUp);
-            inputBinder.BindDown(InputActions.Zoomout.ToString(), Key.MouseWheelDown);
+            //inputBinder.BindDown(InputActions.ZoomIn.ToString(), Key.MouseWheelUp);
+            //inputBinder.BindDown(InputActions.Zoomout.ToString(), Key.MouseWheelDown);
+
+            inputBinder.BindDown(InputActions.LevelUp.ToString(), Key.MouseWheelUp);
+            inputBinder.BindDown(InputActions.LevelDown.ToString(), Key.MouseWheelDown);
+
             inputBinder.Bind(InputActions.Inventory.ToString(), Key.I);
             inputBinder.Bind(InputActions.DebugView.ToString(), Key.F3);
 

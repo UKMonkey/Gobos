@@ -178,10 +178,6 @@
       <Project>{888D390E-C76A-459A-8029-141C342FBC89}</Project>
       <Name>BiomeGen</Name>
     </ProjectReference>
-    <ProjectReference Include="..\WorldGeneration\Outbreak.BiomeGen\Gobos.BiomeGen.csproj">
-      <Project>{02FAF5C2-62BF-4310-B2C5-0F4F991DF0C8}</Project>
-      <Name>Outbreak.BiomeGen</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

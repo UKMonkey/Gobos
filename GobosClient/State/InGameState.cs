@@ -109,7 +109,6 @@ namespace Outbreak.Client.State
             DefaultInputBindings.Populate(Engine.InputBinder);
 
             var keybindsFile = Lookup.GetFilePath("keybinds.cfg");
-
             var keybindsFileInfo = new FileInfo(keybindsFile);
 
             if (keybindsFileInfo.Exists)
@@ -133,6 +132,8 @@ namespace Outbreak.Client.State
                 .Register(InputActions.Walk.ToString(), AlterMovementSpeed)
                 .Register(InputActions.ZoomIn.ToString(), ZoomIn)
                 .Register(InputActions.Zoomout.ToString(), ZoomOut)
+                .Register(InputActions.LevelDown.ToString(), LevelDown)
+                .Register(InputActions.LevelUp.ToString(), LevelUp)
                 .Register(InputActions.Fire.ToString(), Fire)
                 .Register(InputActions.Interact.ToString(), Interact)
                 .Register(InputActions.Inventory.ToString(), ToggleInventory)
@@ -443,6 +444,16 @@ namespace Outbreak.Client.State
                 return;
 
             action.PerformAction();
+        }
+
+        private void LevelDown(InputEvent e)
+        {
+            Engine.LevelOfInterest -= 1;
+        }
+
+        private void LevelUp(InputEvent e)
+        {
+            Engine.LevelOfInterest += 1;
         }
     }
 }
