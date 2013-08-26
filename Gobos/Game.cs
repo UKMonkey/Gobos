@@ -95,33 +95,16 @@ namespace Outbreak
         protected virtual void RegisterEntityTypes()
         {
             EntityFactory.
-                Add(EntityTypeEnum.Player, "Player").
+                Add(EntityTypeEnum.Player, "PlayerCamera").
                     RegisterDefaultProperty(EntityPropertyEnum.NameplateColour, new Color4(1.0f, 0.2f, 0.9f, 0.1f)).
                     RegisterDefaultProperty(EntityPropertyEnum.Static, false).
-                    RegisterDefaultProperty(EntityPropertyEnum.Solid, true).
-                    RegisterDefaultProperty(EntityPropertyEnum.MaxHealth, Consts.PlayerStartHealth).
-                    RegisterDefaultProperty(EntityPropertyEnum.Health, Consts.PlayerStartHealth).
+                    RegisterDefaultProperty(EntityPropertyEnum.Solid, false).
                     RegisterDefaultProperty(EntityPropertyEnum.MovementVector, new Vector3(0, 0, 0)).
                     RegisterDefaultProperty(EntityPropertyEnum.ViewRange, (float)20).
-                    RegisterDefaultProperty(EntityPropertyEnum.MeleeViewRange, (float)2).
-                    RegisterDefaultProperty(EntityPropertyEnum.ViewAngleRange, (float)Math.PI / 4).
 
-                    RegisterDefaultProperty(GameEntityPropertyEnum.IsGod, false).
-                    RegisterDefaultProperty(GameEntityPropertyEnum.IsHuman, true).
                     RegisterDefaultProperty(GameEntityPropertyEnum.WalkSpeed, 0.05f).
                     RegisterDefaultProperty(GameEntityPropertyEnum.RunSpeed, 0.1f).
                     RegisterDefaultProperty(GameEntityPropertyEnum.KeyboardMovementDir, (byte)Direction.None).
-                    RegisterDefaultProperty(GameEntityPropertyEnum.IsRunning, true).
-
-                    RegisterDefaultProperty(GameEntityPropertyEnum.Experience, 0).
-                    RegisterDefaultProperty(GameEntityPropertyEnum.Level, 1).
-                    RegisterDefaultProperty(GameEntityPropertyEnum.LevelExperience, 0).
-                    RegisterDefaultProperty(GameEntityPropertyEnum.Hunger, 0).
-                    RegisterDefaultProperty(GameEntityPropertyEnum.Mood, 0).
-
-                    RegisterDefaultProperty(GameEntityPropertyEnum.EquippedItem, (byte)InventorySpecialSlotEnum.PrimaryWeapon).
-                    RegisterDefaultProperty(EntityPropertyEnum.Model, Models.Player01).
-
 
                 Add(EntityTypeEnum.InventoryItem, "InventoryItem").
                     RegisterDefaultProperty(EntityPropertyEnum.Static, true).
