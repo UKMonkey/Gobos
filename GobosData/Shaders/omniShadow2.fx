@@ -208,6 +208,8 @@ float4 ambient_PS(AmbientVSOutput input) : COLOR0
 	float inputLength = length(input.wPos);
 	float len = inputLength / minViewRange;
 
+	return rgba;
+
 	float minValModifier;
 	if (len < 1)
 		minValModifier = 1;
